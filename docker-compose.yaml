@@ -47,16 +47,6 @@ services:
     networks:
       - subby-back-net
 
-
-  vuejs:
-    image: node:lts-alpine
-    working_dir: /usr/share/app
-    command: "sh -c 'npm install -g npm@latest && npm install && npm run dev'"
-    volumes:
-      - ./app:/usr/share/app
-    ports:
-      - "5173:5173"
-
 volumes:
   mysql_data:
 
