@@ -1,0 +1,65 @@
+services:
+  back:
+    build: 
+      context: ./subby-back
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./subby-back:/app
+      - /app/node_modules
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=subby
+      - DB_PASSWORD=password
+      - DB_NAME=subby
+    networks:
+      - subby-back-net
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: subby-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: subby
+      MYSQL_USER: subby
+      MYSQL_PASSWORD: password
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - subby-back-net
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: subby-phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "8080:80"
+    depends_on:
+      - mysql
+    networks:
+      - subby-back-net
+
+
+  vuejs:
+    image: node:lts-alpine
+    working_dir: /usr/share/app
+    command: "sh -c 'npm install -g npm@latest && npm install && npm run dev'"
+    volumes:
+      - ./app:/usr/share/app
+    ports:
+      - "5173:5173"
+
+volumes:
+  mysql_data:
+
+networks:
+  subby-back-net:
+    driver: bridge
