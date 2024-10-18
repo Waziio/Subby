@@ -14,6 +14,7 @@ import { UsersSubscriptionsModule } from './modules/users-subscriptions/usersSub
 import { UserSubscription } from './modules/users-subscriptions/userSubscription.model';
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { Notification } from './modules/notifications/notification.model';
+import { AuthModule } from './modules/auth/auth.module';
 
 
 @Module({
@@ -35,6 +36,7 @@ import { Notification } from './modules/notifications/notification.model';
     SubscriptionsPlansModule,
     UsersSubscriptionsModule,
     NotificationsModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -8,7 +8,7 @@ export class User extends Model {
   @Column({ autoIncrement: true, primaryKey: true, type: INTEGER })
   id: number;
 
-  @Column({ allowNull: false, validate: { notEmpty: true, len: { args: [3, 25], msg: "Username must be between 3 and 25 characters long" } } })
+  @Column({ allowNull: false, unique: true, validate: { notEmpty: true, len: { args: [3, 25], msg: "Username must be between 3 and 25 characters long" } } })
   username: string;
 
   @Column({ allowNull: false, validate: { isEmail: true, notEmpty: true }, unique: true })
