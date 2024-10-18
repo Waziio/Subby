@@ -9,11 +9,11 @@ export class UsersService {
     constructor(@InjectModel(User) private readonly userModel: typeof User) {}
 
     async findByEmail(email: string) {
-        return await this.userModel.findAll({ where: { email } })
+        return await this.userModel.findOne({ where: { email } })
     }
 
     async findByUsername(username: string) {
-        return await this.userModel.findAll({ where: { username } })
+        return await this.userModel.findOne({ where: { username } })
     }
 
     async create(user: UserCreationData) {
