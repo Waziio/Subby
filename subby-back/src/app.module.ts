@@ -15,6 +15,8 @@ import { UserSubscription } from './modules/users-subscriptions/userSubscription
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { Notification } from './modules/notifications/notification.model';
 import { AuthModule } from './modules/auth/auth.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './modules/auth/auth.guard';
 
 
 @Module({
@@ -39,6 +41,6 @@ import { AuthModule } from './modules/auth/auth.module';
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, { provide: APP_GUARD, useClass: AuthGuard }],
 }) 
 export class AppModule {}

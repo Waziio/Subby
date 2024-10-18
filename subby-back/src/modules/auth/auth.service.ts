@@ -4,12 +4,16 @@ import { UsersService } from '../users/users.service';
 import { SigninRequest } from './dto/signinRequest';
 import * as bcrypt from 'bcrypt';
 import * as jwt from "jsonwebtoken"
+import { JwtService } from '@nestjs/jwt';
 
 
 @Injectable()
 export class AuthService {
 
-  constructor(private usersService: UsersService) {}
+  constructor(
+    private usersService: UsersService,
+    private jwtService: JwtService
+  ) {}
   
   async signup(signupRequest: SignupRequest) {
     const { email, username, password } = signupRequest
@@ -50,10 +54,13 @@ export class AuthService {
       phoneNumber: userFound.phoneNumber
     }
 
-    return { jwt: this.generateJwt(userFound.id), user: userData }
-  }
-
-  private generateJwt(userId: number) {
-    return jwt.sign({ userId }, process.env.JWT_SECRET, { algorithm: "HS256" , expiresIn: "7d"})
+    return { 
+      jwt: await this.jwtService.signAsync({ 
+        userId: userFound.id, 
+        email: userFound.email,
+        username: userFound.username,
+      }),
+      user: userData 
+    }
   }
 }
