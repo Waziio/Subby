@@ -3,8 +3,8 @@ import { SignupRequest } from './dto/signupRequest';
 import { UsersService } from '../users/users.service';
 import { SigninRequest } from './dto/signinRequest';
 import * as bcrypt from 'bcrypt';
-import * as jwt from "jsonwebtoken"
 import { JwtService } from '@nestjs/jwt';
+import { hashPassword } from 'src/utils';
 
 
 @Injectable()
@@ -23,10 +23,10 @@ export class AuthService {
     }
 
     if (await this.usersService.findByUsername(username)) {
-      throw new BadRequestException("Email unavailable")
+      throw new BadRequestException("Username unavailable")
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10)
+    const hashedPassword = await hashPassword(password)
 
     const userCreationData = { email, username, password: hashedPassword }
     if (signupRequest.phoneNumber) userCreationData['phoneNumber'] = signupRequest.phoneNumber

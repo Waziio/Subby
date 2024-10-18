@@ -9,3 +9,4 @@ export interface UserData {
 }
 
 export type UserCreationData = Optional<UserData, 'phoneNumber' | 'googleId'>;
+export type UserUpdateData = Partial<Omit<UserData, "googleId">>
