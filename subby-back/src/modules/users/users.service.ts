@@ -1,4 +1,4 @@
-import { BadRequestException, HttpException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { User } from './user.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { UserCreationData, UserUpdateData } from 'src/types/UserData';
@@ -47,5 +47,10 @@ export class UsersService {
     if (updateDto.phoneNumber) data.phoneNumber = updateDto.phoneNumber;
 
     await this.userModel.update(data, { where: { id: userId } });
+  }
+
+
+  async delete(userId: number) {
+    return await this.userModel.destroy({ where: { id: userId } });
   }
 }
