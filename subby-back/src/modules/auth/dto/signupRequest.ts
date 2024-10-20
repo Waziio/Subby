@@ -1,4 +1,4 @@
-import { IsEmail, IsNotEmpty, IsPhoneNumber, IsString, Length } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsPhoneNumber, IsString, Length } from 'class-validator';
 
 export class SignupRequest {
   @IsNotEmpty()
@@ -6,6 +6,7 @@ export class SignupRequest {
   readonly email: string;
   
   @IsNotEmpty()
+  @Length(3, 25)
   readonly username: string;
   
   @IsNotEmpty()
@@ -13,6 +14,7 @@ export class SignupRequest {
   @IsString()
   readonly password: string;
 
+  @IsOptional()
   @IsPhoneNumber("FR")
   readonly phoneNumber: string;
 }

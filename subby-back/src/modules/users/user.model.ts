@@ -23,9 +23,9 @@ export class User extends Model {
   @Column({ allowNull: true, unique: true, field: "google_id" })
   googleId: string;
 
-  @HasMany(() => UserSubscription)
+  @HasMany(() => UserSubscription, { onDelete: "CASCADE" })
   userSubscriptions: UserSubscription[];
 
-  @HasMany(() => Notification)
+  @HasMany(() => Notification, { onDelete: "CASCADE" })
   notifications: Notification[];
 }
