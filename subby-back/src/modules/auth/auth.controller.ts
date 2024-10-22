@@ -10,13 +10,13 @@ export class AuthController {
 
     @Public()
     @Post("/signup")
-    signup(@Body() signupRequest: SignupRequest) {
+    async signup(@Body() signupRequest: SignupRequest) {
         return this.authService.signup(signupRequest)
     }
 
     @Public()
     @Post("/signin")
-    signin(@Body() signinRequest: SigninRequest) {
+    async signin(@Body() signinRequest: SigninRequest) {
         return this.authService.signin(signinRequest)
     }
 }

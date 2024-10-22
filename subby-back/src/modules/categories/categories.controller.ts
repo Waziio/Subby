@@ -1,4 +1,4 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { GetCategoriesDto } from './dto/getCategoriesDto';
 import { CategoriesService } from './categories.service';
 
@@ -9,5 +9,10 @@ export class CategoriesController {
     @Get("/")
     async get(@Query() getCategoriesDto: GetCategoriesDto) {
       return await this.categoriesService.getCategories(getCategoriesDto)
+    }
+
+    @Get(":id")
+    async getById(@Param('id') id: string) {
+        return await this.categoriesService.getCategoryById(parseInt(id))
     }
 }

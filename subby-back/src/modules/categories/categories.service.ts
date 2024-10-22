@@ -1,4 +1,4 @@
-import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
+import { Injectable, NotFoundException, OnApplicationBootstrap } from '@nestjs/common';
 import { Category } from './category.model';
 import { InjectModel } from '@nestjs/sequelize';
 import { GetCategoriesDto } from './dto/getCategoriesDto';
@@ -17,6 +17,12 @@ export class CategoriesService implements OnApplicationBootstrap {
       : undefined;
 
     return await this.categoryModel.findAll(whereCondition);
+  }
+
+  async getCategoryById(id: number) {
+    const categoryFound = await this.categoryModel.findByPk(id)
+    if (!categoryFound) throw new NotFoundException("Category not found")
+    return categoryFound
   }
 
   async onApplicationBootstrap() {
