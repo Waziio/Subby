@@ -9,5 +9,6 @@ import { CategoriesModule } from '../categories/categories.module';
   controllers: [PlatformsController],
   providers: [PlatformsService],
   imports: [SequelizeModule.forFeature([Platform]), CategoriesModule],
+  exports: [PlatformsService],
 })
 export class PlatformsModule {}
