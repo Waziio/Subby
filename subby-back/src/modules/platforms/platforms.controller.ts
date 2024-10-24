@@ -23,7 +23,7 @@ export class PlatformsController {
         return this.platformsService.create(createPlatformDto)
     }
 
-    @Get(":id/plans")
+    @Get(":id/subscription-plans")
     async getPlatformPlans(@Param('id') id: string) {
         return await this.platformsService.getPlatformPlans(parseInt(id))
     }
