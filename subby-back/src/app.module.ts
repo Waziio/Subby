@@ -10,8 +10,8 @@ import { PlatformsModule } from './modules/platforms/platforms.module';
 import { Platform } from './modules/platforms/platform.model';
 import { SubscriptionPlansModule } from './modules/subscription-plans/subscriptionPlans.module';
 import { SubscriptionPlan } from './modules/subscription-plans/subscriptionPlan.model';
-import { UsersSubscriptionsModule } from './modules/users-subscriptions/usersSubscriptions.module';
-import { UserSubscription } from './modules/users-subscriptions/userSubscription.model';
+import { UserSubscriptionsModule } from './modules/user-subscriptions/userSubscriptions.module';
+import { UserSubscription } from './modules/user-subscriptions/userSubscription.model';
 import { NotificationsModule } from './modules/notifications/notifications.module';
 import { Notification } from './modules/notifications/notification.model';
 import { AuthModule } from './modules/auth/auth.module';
@@ -36,7 +36,7 @@ import { AuthGuard } from './modules/auth/auth.guard';
     CategoriesModule,
     PlatformsModule,
     SubscriptionPlansModule,
-    UsersSubscriptionsModule,
+    UserSubscriptionsModule,
     NotificationsModule,
     AuthModule,
   ],

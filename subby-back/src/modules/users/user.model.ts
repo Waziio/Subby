@@ -1,6 +1,6 @@
 import { INTEGER } from 'sequelize';
 import { Column, HasMany, Model, Table } from 'sequelize-typescript';
-import { UserSubscription } from '../users-subscriptions/userSubscription.model';
+import { UserSubscription } from '../user-subscriptions/userSubscription.model';
 import { Notification } from '../notifications/notification.model';
 
 @Table
@@ -24,7 +24,7 @@ export class User extends Model {
   googleId: string;
 
   @HasMany(() => UserSubscription, { onDelete: "CASCADE" })
-  userSubscriptions: UserSubscription[];
+  subscriptions: UserSubscription[];
 
   @HasMany(() => Notification, { onDelete: "CASCADE" })
   notifications: Notification[];

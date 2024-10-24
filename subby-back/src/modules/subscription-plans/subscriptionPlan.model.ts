@@ -2,7 +2,7 @@ import { DECIMAL, INTEGER, ENUM } from 'sequelize';
 import { Column, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
 import { Platform } from 'src/modules/platforms/platform.model';
 import { SubscriptionFrequency } from 'src/types/SubscriptionFrequency';
-import { UserSubscription } from '../users-subscriptions/userSubscription.model';
+import { UserSubscription } from '../user-subscriptions/userSubscription.model';
 
 @Table
 export class SubscriptionPlan extends Model {

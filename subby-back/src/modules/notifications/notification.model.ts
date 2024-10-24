@@ -1,10 +1,9 @@
-import { INTEGER, DECIMAL, BOOLEAN } from 'sequelize';
+import { INTEGER } from 'sequelize';
 import { Column, ForeignKey, Model, Table } from 'sequelize-typescript';
 import { ENUM } from 'sequelize';
-import { SubscriptionFrequency } from 'src/types/SubscriptionFrequency';
 import { DATE } from 'sequelize';
 import { User } from '../users/user.model';
-import { UserSubscription } from '../users-subscriptions/userSubscription.model';
+import { UserSubscription } from '../user-subscriptions/userSubscription.model';
 import { TEXT } from 'sequelize';
 import { NotificationStatus } from 'src/types/NotificationStatus';
 
