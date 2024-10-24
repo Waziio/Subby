@@ -38,4 +38,9 @@ export class PlatformsService {
       categoryId: createPlatformDto.categoryId,
     });
   }
+
+  async getPlatformPlans(platformId: number) {
+    const platform = await this.getPlatformById(platformId);
+    return await platform.$get("plans");
+  }
 }

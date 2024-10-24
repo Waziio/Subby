@@ -8,8 +8,8 @@ import { CategoriesModule } from './modules/categories/categories.module';
 import { Category } from './modules/categories/category.model';
 import { PlatformsModule } from './modules/platforms/platforms.module';
 import { Platform } from './modules/platforms/platform.model';
-import { SubscriptionsPlansModule } from './modules/subscriptions-plans/subscriptionsPlans.module';
-import { SubscriptionPlan } from './modules/subscriptions-plans/subscriptionPlan.model';
+import { SubscriptionPlansModule } from './modules/subscription-plans/subscriptionPlans.module';
+import { SubscriptionPlan } from './modules/subscription-plans/subscriptionPlan.model';
 import { UsersSubscriptionsModule } from './modules/users-subscriptions/usersSubscriptions.module';
 import { UserSubscription } from './modules/users-subscriptions/userSubscription.model';
 import { NotificationsModule } from './modules/notifications/notifications.module';
@@ -35,7 +35,7 @@ import { AuthGuard } from './modules/auth/auth.guard';
     UsersModule,
     CategoriesModule,
     PlatformsModule,
-    SubscriptionsPlansModule,
+    SubscriptionPlansModule,
     UsersSubscriptionsModule,
     NotificationsModule,
     AuthModule,
