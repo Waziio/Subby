@@ -10,9 +10,7 @@ export class SubscriptionPlansController {
 
   @Get('/:id')
   async getById(@Param('id') id: string) {
-    return await this.subPlansServiceService.getSubscriptionPlanById(
-      parseInt(id),
-    );
+    return await this.subPlansServiceService.getById(parseInt(id));
   }
 
   @Post('')

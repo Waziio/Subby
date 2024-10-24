@@ -1,4 +1,10 @@
-import { IsDecimal, IsEnum, IsNotEmpty, IsString } from 'class-validator';
+import {
+  IsDecimal,
+  IsEnum,
+  IsNotEmpty,
+  IsString,
+  IsInt,
+} from 'class-validator';
 import { SubscriptionFrequency } from 'src/types/SubscriptionFrequency';
 
 export class CreateSubPlanDto {
@@ -12,6 +18,6 @@ export class CreateSubPlanDto {
   @IsEnum(SubscriptionFrequency)
   readonly frequency: SubscriptionFrequency;
 
-  @IsNotEmpty()
+  @IsInt()
   readonly platformId: number;
 }

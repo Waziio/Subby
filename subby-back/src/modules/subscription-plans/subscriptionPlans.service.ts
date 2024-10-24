@@ -12,7 +12,7 @@ export class SubscriptionPlansService {
         private readonly platformsService: PlatformsService,
     ) {}
 
-    async getSubscriptionPlanById(id: number) {
+    async getById(id: number) {
         const planFound = await this.subPlansModel.findByPk(id);
         if (!planFound) throw new NotFoundException('Subscription plan not found');
         return planFound;

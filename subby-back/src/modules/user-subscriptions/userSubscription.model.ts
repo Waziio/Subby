@@ -32,7 +32,7 @@ export class UserSubscription extends Model {
   userId: number;
 
   @ForeignKey(() => SubscriptionPlan)
-  @Column({ allowNull: false, type: INTEGER })
+  @Column({ allowNull: true, type: INTEGER })
   subscriptionPlanId: number;
 
   @HasMany(() => Notification)

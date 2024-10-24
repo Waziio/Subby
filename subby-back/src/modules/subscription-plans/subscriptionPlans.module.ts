@@ -9,5 +9,6 @@ import { PlatformsModule } from '../platforms/platforms.module';
   controllers: [SubscriptionPlansController],
   providers: [SubscriptionPlansService],
   imports: [SequelizeModule.forFeature([SubscriptionPlan]), PlatformsModule],
+  exports: [SubscriptionPlansService],
 })
 export class SubscriptionPlansModule {}
