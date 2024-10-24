@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { UserSubscription } from './userSubscription.model';
 import { UsersService } from '../users/users.service';
@@ -14,12 +14,18 @@ export class UserSubscriptionsService {
     private readonly subPlansService: SubscriptionPlansService,
   ) {}
 
-  async getUserSubscriptions(userId: number) {
+  async getAll(userId: number) {
     const userFound = await this.usersService.getById(userId);
     return await userFound.$get('subscriptions');
   }
 
-  async createUserSubscription(userId: number, createUserSubDto: CreateUserSubDto) {
+  async getById(userId: number, subscriptionId: number) {
+    const subFound = await this.userSubsModel.findOne({ where: { id: subscriptionId, userId: userId } });
+    if (!subFound) throw new NotFoundException(`Subscription not found`);
+    return subFound;
+  }
+
+  async create(userId: number, createUserSubDto: CreateUserSubDto) {
     await this.usersService.getById(userId);
 
     if (createUserSubDto.isCustom) {
@@ -53,5 +59,10 @@ export class UserSubscriptionsService {
   private areCustomFieldsSet(createUserSubDto: CreateUserSubDto) {
     const requiredCustomFields = ['customName', 'customCost', 'customFrequency'];
     return requiredCustomFields.every(field => !!createUserSubDto[field]);
+  }
+
+  async delete(userId: number, subscriptionId: number) {
+    const subFound = await this.getById(userId, subscriptionId);
+    await subFound.destroy();
   }
 }
