@@ -1,5 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
-import { SubscriptionPlansService } from './subscription-plans.service';
+import { SubscriptionPlansService } from './subscriptionPlans.service';
 import { CreateSubPlanDto } from './dto/CreateSubPlanDto';
 
 @Controller('subscription-plans')

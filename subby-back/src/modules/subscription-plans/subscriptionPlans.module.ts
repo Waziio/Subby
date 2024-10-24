@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-import { SubscriptionPlansController } from './subscription-plans.controller';
-import { SubscriptionPlansService } from './subscription-plans.service';
+import { SubscriptionPlansController } from './subscriptionPlans.controller';
+import { SubscriptionPlansService } from './subscriptionPlans.service';
 import { SubscriptionPlan } from './subscriptionPlan.model';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { PlatformsModule } from '../platforms/platforms.module';
