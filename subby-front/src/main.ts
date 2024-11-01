@@ -9,11 +9,16 @@ import PrimeVue from 'primevue/config';
 
 import App from './App.vue';
 import router from './router';
+import piniaPluginPersistedstate from 'pinia-plugin-persistedstate';
 
 const app = createApp(App);
 
 app.use(PrimeVue, { theme: 'none' });
-app.use(createPinia());
+
+const pinia = createPinia();
+pinia.use(piniaPluginPersistedstate);
+app.use(pinia);
+
 app.use(router);
 
 app.mount('#app');

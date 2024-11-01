@@ -1,17 +1,22 @@
 <script setup lang="ts">
+import AuthLink from '@/components/auth/AuthLink.vue';
+import CustomInput from '@/components/custom/CustomInput.vue';
 import Logo from '@/components/Logo.vue';
-import AuthService from '@/services/AuthService';
+import { useAuthStore } from '@/stores/auth';
 import Button from 'primevue/button';
-import InputText from 'primevue/inputtext';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const authStore = useAuthStore();
+const router = useRouter();
 
 const email = ref('');
 const password = ref('');
 
 async function signIn() {
 	try {
-		const response = await AuthService.signIn(email.value, password.value);
-		console.log(response);
+		await authStore.signIn(email.value, password.value);
+		router.push({ name: 'Dashboard' });
 	} catch (error) {
 		console.error(error);
 	}
@@ -24,12 +29,12 @@ async function signIn() {
 		<div id="signInFormContainer">
 			<h1 class="text-2xl text-primary font-bold">Sign in</h1>
 			<div id="inputs">
-				<InputText id="email" v-model="email" placeholder="Email" />
-				<InputText v-model="password" placeholder="Password" />
+				<CustomInput id="email" v-model="email" label="Email" type="email" />
+				<CustomInput id="password" v-model="password" label="Password" type="password" />
 			</div>
 			<Button label="Connect" @click="signIn"></Button>
 		</div>
-		<p class="text-lg">Don't have an account yet ? <RouterLink id="signUpLink" to="/signup" class="font-bold">Sign up</RouterLink></p>
+		<AuthLink currentPage="signIn"></AuthLink>
 	</div>
 </template>
 
@@ -50,30 +55,13 @@ async function signIn() {
 	align-items: center;
 	justify-content: space-around;
 	height: 30vh;
-	@apply bg-third lg:w-1/6 sm:w-1/2 rounded-lg p-4 shadow-lg;
+	@apply bg-third lg:w-1/6 sm:w-1/2 rounded-xl p-4 shadow-lg;
 }
 
 #inputs {
 	display: flex;
 	flex-direction: column;
-	@apply w-3/4 justify-center gap-2;
-}
-
-#signUpLink {
-	position: relative;
-}
-
-#signUpLink::after {
-	content: '';
-	position: absolute;
-	width: 0;
-	height: 2px;
-	bottom: -5px;
-	left: 0;
-	@apply bg-current transition-all duration-300;
-}
-
-#signUpLink:hover::after {
-	width: 100%;
+	align-items: center;
+	@apply w-3/4 justify-center gap-3;
 }
 </style>
