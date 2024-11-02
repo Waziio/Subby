@@ -17,7 +17,7 @@ defineOptions({
 <template>
 	<div class="customInput">
 		<FloatLabel variant="on" v-if="label">
-			<InputText :id="props.id" v-bind="$attrs" />
+			<InputText :id="props.id" v-bind="$attrs" :aria-label="label" />
 			<label :for="props.id">{{ props.label }}</label>
 		</FloatLabel>
 

@@ -7,7 +7,6 @@ export const useAuthStore = defineStore(
 	'auth',
 	() => {
 		const token = ref<string>();
-		const user = ref<User>();
 		const isAuthenticated = computed(() => !!token.value);
 
 		async function signIn(email: string, password: string) {
@@ -15,7 +14,7 @@ export const useAuthStore = defineStore(
 			token.value = response.jwt;
 		}
 
-		return { user, token, isAuthenticated, signIn };
+		return { token, isAuthenticated, signIn };
 	},
 	{ persist: true }
 );

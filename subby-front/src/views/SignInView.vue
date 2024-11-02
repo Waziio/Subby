@@ -3,10 +3,14 @@ import AuthLink from '@/components/auth/AuthLink.vue';
 import CustomInput from '@/components/custom/CustomInput.vue';
 import Logo from '@/components/Logo.vue';
 import { useAuthStore } from '@/stores/auth';
+import { AxiosError } from 'axios';
 import Button from 'primevue/button';
+import Toast from 'primevue/toast';
+import { useToast } from 'primevue/usetoast';
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
 
+const toast = useToast();
 const authStore = useAuthStore();
 const router = useRouter();
 
@@ -18,12 +22,19 @@ async function signIn() {
 		await authStore.signIn(email.value, password.value);
 		router.push({ name: 'Dashboard' });
 	} catch (error) {
-		console.error(error);
+		if (error instanceof AxiosError) {
+			if (error.response?.status === 400) {
+				toast.add({ severity: 'error', summary: 'Connection failed', detail: 'Email or password invalid', life: 3000 });
+			} else {
+				toast.add({ severity: 'error', summary: 'Connection failed', detail: 'An error occurred', life: 3000 });
+			}
+		}
 	}
 }
 </script>
 
 <template>
+	<Toast />
 	<div id="signInPage">
 		<Logo id="logo" />
 		<div id="signInFormContainer">
