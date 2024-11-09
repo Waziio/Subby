@@ -1,5 +1,6 @@
 import './assets/main.css';
 import './assets/base.css';
+import 'primeicons/primeicons.css';
 import './assets/tailwind.css';
 import 'typeface-inter';
 
