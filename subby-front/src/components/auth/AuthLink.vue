@@ -1,6 +1,6 @@
 <template>
 	<p class="text-lg">
-		{{ text }} <RouterLink id="signUpLink" to="/signup" class="font-bold">{{ textLink }}</RouterLink>
+		{{ text }} <RouterLink id="signUpLink" :to="targetRoute" class="font-bold">{{ textLink }}</RouterLink>
 	</p>
 </template>
 
@@ -8,6 +8,7 @@
 const props = defineProps<{ currentPage: 'signIn' | 'signUp' }>();
 const text = props.currentPage === 'signIn' ? "Don't have an account yet ?" : 'Already have an account ?';
 const textLink = props.currentPage === 'signIn' ? 'Sign up' : 'Sign in';
+const targetRoute = props.currentPage === 'signIn' ? '/signup' : '/signin';
 </script>
 
 <style scoped>

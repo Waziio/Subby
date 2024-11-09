@@ -9,6 +9,12 @@ const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
 	routes: [
 		{
+			path: '/',
+			redirect: () => {
+				return { name: 'SignIn' };
+			},
+		},
+		{
 			path: '/signin',
 			name: 'SignIn',
 			component: SignInView,
@@ -26,20 +32,24 @@ const router = createRouter({
 	],
 });
 
-// router.beforeEach(async (to, from, next) => {
-// 	const authStore = useAuthStore();
-// 	const userStore = useUserStore();
+router.beforeEach(async (to, from, next) => {
+	const authStore = useAuthStore();
+	const userStore = useUserStore();
 
-// 	if (to.name !== 'SignIn' && !authStore.isAuthenticated) {
-// 		next({ name: 'SignIn' });
-// 	} else {
-// 		await userStore.getMe();
-// 		if (to.name === 'SignIn' && authStore.isAuthenticated) {
-// 			next({ name: 'Dashboard' });
-// 		} else {
-// 			next();
-// 		}
-// 	}
-// });
+	const isOnAuthPage = to.name === 'SignIn' || to.name === 'SignUp';
+
+	if (authStore.isAuthenticated) userStore.getMe();
+
+	if (!isOnAuthPage && !authStore.isAuthenticated) {
+		console.log('Not authenticated');
+		next({ name: 'SignIn' });
+	} else {
+		if (isOnAuthPage && authStore.isAuthenticated) {
+			next({ name: 'Dashboard' });
+		} else {
+			next();
+		}
+	}
+});
 
 export default router;

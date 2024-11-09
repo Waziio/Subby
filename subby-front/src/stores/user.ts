@@ -3,7 +3,7 @@ import { defineStore } from 'pinia';
 import type { User } from '@/types/User';
 import UserService from '@/services/UserService';
 
-export const useUserStore = defineStore('auth', () => {
+export const useUserStore = defineStore('user', () => {
 	const user = ref<User>();
 
 	async function getMe() {
