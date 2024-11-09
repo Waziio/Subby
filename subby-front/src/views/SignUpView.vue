@@ -5,6 +5,7 @@ import Logo from '@/components/Logo.vue';
 import authService from '@/services/AuthService';
 import { AxiosError } from 'axios';
 import Button from 'primevue/button';
+import FloatLabel from 'primevue/floatlabel';
 import InputMask from 'primevue/inputmask';
 import Toast from 'primevue/toast';
 import { useToast } from 'primevue/usetoast';
@@ -53,9 +54,12 @@ async function signUp() {
 				<CustomInput id="email" class="input" v-model="email" label="Email" type="email" />
 				<CustomInput id="username" v-model="username" class="input" label="Username" />
 				<CustomInput id="password" v-model="password" class="input" label="Password" type="password" />
-				<InputMask id="phoneNumber" class="input max-w-full" v-model="phoneNumber" placeholder="+33600000000" mask="+33999999999" />
+				<FloatLabel variant="on">
+					<InputMask id="phoneNumber" class="input max-w-full" v-model="phoneNumber" mask="+33999999999" />
+					<label for="phoneNumber">Phone number</label>
+				</FloatLabel>
 			</div>
-			<Button label="Connect" @click="signUp"></Button>
+			<Button label="Create Account" @click="signUp"></Button>
 		</div>
 		<AuthLink currentPage="signUp"></AuthLink>
 	</div>

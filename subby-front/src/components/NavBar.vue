@@ -3,27 +3,34 @@ import MegaMenu from 'primevue/megamenu';
 import Logo from './Logo.vue';
 import Button from 'primevue/button';
 import { ref } from 'vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter();
 
 const items = ref([
 	{
 		label: 'Dashboard',
 		root: true,
 		icon: 'pi pi-gauge',
+		command: () => router.push({ name: 'Dashboard' }),
 	},
 	{
 		label: 'Subscriptions',
 		root: true,
 		icon: 'pi pi-wallet',
+		command: () => router.push({ name: 'Subscriptions' }),
 	},
 	{
 		label: 'Platforms',
 		root: true,
 		icon: 'pi pi-desktop',
+		command: () => router.push({ name: 'Platforms' }),
 	},
 	{
 		label: 'My Account',
 		root: true,
 		icon: 'pi pi-user',
+		command: () => router.push({ name: 'Account' }),
 	},
 ]);
 </script>
@@ -32,31 +39,33 @@ const items = ref([
 	<MegaMenu id="navbar" :model="items">
 		<template #start>
 			<Logo id="logo" width="60" :withoutText="true" />
-			<p class="ml-2 text-3xl text-primary font-bold">Subby</p>
+			<p id="subbyTitle">Subby</p>
 		</template>
 
 		<template #end>
 			<Button icon="pi pi-bell" aria-label="Notifications" />
-			<Button icon="pi pi-sign-out" severity="danger" variant="text" aria-label="Logout" />
 		</template>
 	</MegaMenu>
 </template>
 
 <style scoped>
-#navbar {
-	@apply text-primary mx-auto;
+#subbyTitle {
+	@apply ml-2 lg:text-3xl md:text-2xl sm:text-xl text-xl text-primary font-bold;
 }
 
-#iconMenu {
-	@apply w-full text-center text-xl;
+:deep(#logo) {
+	@apply lg:w-14 md:w-12 sm:w-10 w-8;
 }
-
 .p-megamenu {
-	@apply justify-between rounded-none;
+	@apply justify-between gap-5 w-7/12 mt-5 mx-auto rounded-lg;
 }
 
 :deep(.p-megamenu-end) {
-	@apply ml-0 flex gap-2;
+	@apply ml-0 mr-2;
+}
+
+:deep(.p-megamenu-start) {
+	@apply cursor-pointer;
 }
 
 :deep(.p-megamenu-root-list) {
