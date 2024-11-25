@@ -15,20 +15,22 @@ const formattedDate = computed(() => {
     else return new Date()
 })
 
+const defaultImg = "https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/Spotify_logo_without_text.svg/768px-Spotify_logo_without_text.svg.png"
+
 </script>
 
 <template>
     <div id="debitContainer">
         <div id="leftContent" class="flex gap-4 items-center">
-            <Image id="logo" width="50" height="50" :src="image" alt="Debit" />
-            <div id="debitContent" class="flex flex-col">
-                <h3 class="debitTitle font-bold">{{ name }}</h3>
+            <Image id="logo" width="30" height="30" :src="defaultImg" alt="Debit" />
+            <div id="debitContent" class="flex flex-col py-1">
+                <h3 class="debitTitle font-bold text-sm">{{ name }}</h3>
                 <p class="debitDate text-sm">{{ format(formattedDate, 'dd/MM/yyyy') }}</p>
             </div>
         </div>
 
         <div id="leftContent" class="flex gap-4 items-center">
-            <p class="debitcost font-bold text-xl">{{ cost }}€</p>
+            <p class="debitcost font-bold">{{ cost }}€</p>
         </div>
     </div>
 </template>
@@ -37,6 +39,6 @@ const formattedDate = computed(() => {
 #debitContainer {
     padding-left: 2%;
     padding-right: 2%;
-    @apply flex items-center justify-between bg-secondary text-primary rounded-lg shadow-md;
+    @apply flex items-center justify-between bg-primary text-third rounded-lg shadow-md;
 }
 </style>

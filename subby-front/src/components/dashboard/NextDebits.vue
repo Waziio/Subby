@@ -15,7 +15,7 @@ onMounted(async () => {
 </script>
 
 <template>
-    <div id="nextDebitsContainer" class="bg-third rounded-lg px-4 py-4">
+    <div id="nextDebitsContainer" class="bg-third rounded-lg px-4 pt-2 pb-4">
         <h2 id="nextDebitsTitle">Next debits</h2>
         <div id="debits" v-for="debit in debits">
             <Debit :name="debit.name" :date="debit.renewalAt" :cost="debit.cost" :image="LogoImgWithoutText" />

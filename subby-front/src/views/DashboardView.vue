@@ -16,6 +16,6 @@ import NextDebits from '@/components/dashboard/NextDebits.vue';
 #dashboardContent {
     margin-left: auto;
     margin-right: auto;
-    @apply w-5/6 mt-14 grid grid-cols-2 gap-8;
+    @apply w-5/6 max-h-[calc(100vh-25vh)] grid grid-cols-2 grid-rows-2 gap-8 mt-14;
 }
 </style>
