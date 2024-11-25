@@ -57,7 +57,7 @@ const items = ref([
 	@apply lg:w-14 md:w-12 sm:w-10 w-8;
 }
 .p-megamenu {
-	@apply justify-between gap-5 w-7/12 mt-5 mx-auto rounded-lg;
+	@apply justify-between gap-5 w-8/12 mt-5 mx-auto rounded-lg;
 }
 
 :deep(.p-megamenu-end) {
