@@ -1,6 +1,7 @@
-import { Body, Controller, Delete, Get, Param, Post, Req } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Query, Req } from '@nestjs/common';
 import { UserSubscriptionsService } from './userSubscriptions.service';
 import { CreateUserSubDto } from './dto/createUserSubDto';
+import { GetUserSubsQueryDto } from './dto/getUserSubsQueryDto';
 
 @Controller('subscriptions')
 export class UserSubscriptionsController {
@@ -9,9 +10,9 @@ export class UserSubscriptionsController {
   ) {}
 
   @Get("")
-  async getUserSubscriptions(@Req() req: Request) {
+  async getUserSubscriptions(@Req() req: Request, @Query() getUserSubsQuery: GetUserSubsQueryDto) {
     const userId = req['user']['userId'] as number;
-    return await this.userSubsService.getAll(userId);
+    return await this.userSubsService.getAll(userId, getUserSubsQuery);
   }
 
   @Get("/:id")

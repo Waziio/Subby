@@ -1,5 +1,5 @@
 import { INTEGER, DECIMAL, BOOLEAN } from 'sequelize';
-import { Column, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
+import { BelongsTo, Column, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
 import { SubscriptionPlan } from '../subscription-plans/subscriptionPlan.model';
 import { ENUM } from 'sequelize';
 import { SubscriptionFrequency } from 'src/types/SubscriptionFrequency';

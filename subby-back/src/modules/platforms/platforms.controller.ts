@@ -10,12 +10,12 @@ export class PlatformsController {
 
     @Get("")
     async getAll(@Query() getPlatformsDto: GetPlatformsDto) {
-        return await this.platformsService.getPlatforms(getPlatformsDto)
+        return await this.platformsService.getAll(getPlatformsDto)
     }
 
     @Get(":id")
     async getById(@Param('id') id: string) {
-        return await this.platformsService.getPlatformById(parseInt(id))
+        return await this.platformsService.getById(parseInt(id))
     }
 
     @Post("")
@@ -25,6 +25,6 @@ export class PlatformsController {
 
     @Get(":id/subscription-plans")
     async getPlatformPlans(@Param('id') id: string) {
-        return await this.platformsService.getPlatformPlans(parseInt(id))
+        return await this.platformsService.getPlans(parseInt(id))
     }
 }

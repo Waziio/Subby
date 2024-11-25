@@ -13,7 +13,7 @@ export class PlatformsService {
     private categoriesService: CategoriesService,
   ) {}
 
-  async getPlatforms(getPlatformsDto: GetPlatformsDto) {
+  async getAll(getPlatformsDto: GetPlatformsDto) {
     const whereCondition = getPlatformsDto.name
       ? { where: { name: { [Op.like]: `${getPlatformsDto.name}%` } } }
       : undefined;
@@ -21,7 +21,7 @@ export class PlatformsService {
     return await this.platformModel.findAll(whereCondition);
   }
 
-  async getPlatformById(id: number) {
+  async getById(id: number) {
     const platformFound = await this.platformModel.findByPk(id);
     if (!platformFound) throw new NotFoundException('Platform not found');
     return platformFound;
@@ -39,8 +39,8 @@ export class PlatformsService {
     });
   }
 
-  async getPlatformPlans(platformId: number) {
-    const platform = await this.getPlatformById(platformId);
+  async getPlans(platformId: number) {
+    const platform = await this.getById(platformId);
     return await platform.$get("plans");
   }
 }

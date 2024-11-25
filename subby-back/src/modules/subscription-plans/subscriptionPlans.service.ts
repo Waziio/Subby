@@ -19,7 +19,7 @@ export class SubscriptionPlansService {
     }
 
     async create(createSubPlanDto: CreateSubPlanDto) {      
-        await this.platformsService.getPlatformById(createSubPlanDto.platformId);
+        await this.platformsService.getById(createSubPlanDto.platformId);
         return await this.subPlansModel.create({
             name: createSubPlanDto.name,
             cost: createSubPlanDto.cost,

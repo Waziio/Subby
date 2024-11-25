@@ -1,13 +1,19 @@
 <script setup lang="ts">
 import Image from 'primevue/image';
-import LogoImgWithoutText from '@/assets/logo_without_text.png';
+import { format } from 'date-fns';
+import { computed } from 'vue';
 
 const props = defineProps({
     name: String,
     image: String,
     date: String,
-    price: String
+    cost: String
 });
+
+const formattedDate = computed(() => {
+    if (props.date) return new Date(props.date);
+    else return new Date()
+})
 
 </script>
 
@@ -17,12 +23,12 @@ const props = defineProps({
             <Image id="logo" width="50" height="50" :src="image" alt="Debit" />
             <div id="debitContent" class="flex flex-col">
                 <h3 class="debitTitle font-bold">{{ name }}</h3>
-                <p class="debitDate text-sm">{{ date }}</p>
+                <p class="debitDate text-sm">{{ format(formattedDate, 'dd/MM/yyyy') }}</p>
             </div>
         </div>
 
         <div id="leftContent" class="flex gap-4 items-center">
-            <p class="debitPrice font-bold">{{ price }}€</p>
+            <p class="debitcost font-bold text-xl">{{ cost }}€</p>
         </div>
     </div>
 </template>
