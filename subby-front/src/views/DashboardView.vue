@@ -1,10 +1,11 @@
 <script setup lang="ts">
+import MonthlyBudget from '@/components/dashboard/MonthlyBudget.vue';
 import NextDebits from '@/components/dashboard/NextDebits.vue';
 </script>
 
 <template>
     <div id="dashboardContent">
-        <NextDebits id="nextDebits"/>
+        <MonthlyBudget id="nextDebits"/>
         <NextDebits id="nextDebits"/>
         <NextDebits id="nextDebits"/>
         <NextDebits id="nextDebits"/>
