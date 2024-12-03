@@ -65,7 +65,7 @@ async function signIn() {
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-around;
-	height: 30vh;
+	height: 35vh;
 	@apply bg-third lg:w-1/6 sm:w-1/2 rounded-xl p-4 shadow-lg;
 }
 

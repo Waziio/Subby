@@ -81,7 +81,7 @@ async function signUp() {
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-around;
-	height: 35vh;
+	height: 40vh;
 	@apply bg-third lg:w-1/4 md:w-2/4 sm:w-1/2 rounded-xl p-4 shadow-lg;
 }
 
