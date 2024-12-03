@@ -1,11 +1,12 @@
 import { INTEGER, DECIMAL, BOOLEAN } from 'sequelize';
-import { BelongsTo, Column, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
+import { Column, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
 import { SubscriptionPlan } from '../subscription-plans/subscriptionPlan.model';
 import { ENUM } from 'sequelize';
 import { SubscriptionFrequency } from 'src/types/SubscriptionFrequency';
 import { DATE } from 'sequelize';
 import { User } from '../users/user.model';
 import { Notification } from '../notifications/notification.model';
+import {Expense} from "../expenses/expense.model";
 
 @Table
 export class UserSubscription extends Model {
@@ -37,4 +38,7 @@ export class UserSubscription extends Model {
 
   @HasMany(() => Notification)
   notifications: Notification[];
+
+  @HasMany(() => Expense)
+  expenses: Expense[];
 }

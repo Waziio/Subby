@@ -17,6 +17,8 @@ import { Notification } from './modules/notifications/notification.model';
 import { AuthModule } from './modules/auth/auth.module';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './modules/auth/auth.guard';
+import { ExpensesModule } from './modules/expenses/expenses.module';
+import {Expense} from "./modules/expenses/expense.model";
 
 
 @Module({
@@ -28,7 +30,7 @@ import { AuthGuard } from './modules/auth/auth.guard';
       username: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
-      models: [User, Category, Platform, SubscriptionPlan, UserSubscription, Notification],
+      models: [User, Category, Platform, SubscriptionPlan, UserSubscription, Notification, Expense],
       autoLoadModels: true,
       synchronize: true
     }),
@@ -39,6 +41,7 @@ import { AuthGuard } from './modules/auth/auth.guard';
     UserSubscriptionsModule,
     NotificationsModule,
     AuthModule,
+    ExpensesModule,
   ],
   controllers: [AppController],
   providers: [AppService, { provide: APP_GUARD, useClass: AuthGuard }],

@@ -2,6 +2,7 @@ import { INTEGER } from 'sequelize';
 import { Column, HasMany, Model, Table } from 'sequelize-typescript';
 import { UserSubscription } from '../user-subscriptions/userSubscription.model';
 import { Notification } from '../notifications/notification.model';
+import {Expense} from "../expenses/expense.model";
 
 @Table
 export class User extends Model {
@@ -28,4 +29,7 @@ export class User extends Model {
 
   @HasMany(() => Notification, { onDelete: "CASCADE" })
   notifications: Notification[];
+
+  @HasMany(() => Expense)
+  expenses: Expense[];
 }
