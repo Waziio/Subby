@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsInt, IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import {IsDateString, IsNotEmpty, IsNumber, IsOptional, IsString} from 'class-validator';
 
 export class GetUserSubsQueryDto {
   @IsOptional()
@@ -11,4 +11,14 @@ export class GetUserSubsQueryDto {
   @Type(() => Number)
   @IsNumber()
   readonly limit: number;
+
+  @IsOptional()
+  @IsDateString()
+  @IsNotEmpty()
+  readonly start: string;
+
+  @IsOptional()
+  @IsDateString()
+  @IsNotEmpty()
+  readonly end: string;
 }

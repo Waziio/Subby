@@ -12,7 +12,7 @@ export class SubscriptionPlan extends Model {
   @Column({ allowNull: false, validate: { notEmpty: true } })
   name: string;
 
-  @Column({ allowNull: false, validate: { isDecimal: true }, type: DECIMAL })
+  @Column({ allowNull: false, validate: { isDecimal: true }, type: DECIMAL(10, 2) })
   cost: number;
 
   @Column({ allowNull: false, type: ENUM(...Object.values(SubscriptionFrequency)) })

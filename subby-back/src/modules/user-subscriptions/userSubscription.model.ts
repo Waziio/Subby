@@ -19,7 +19,7 @@ export class UserSubscription extends Model {
   @Column({ allowNull: true, validate: { notEmpty: true } })
   customName: string;
 
-  @Column({ allowNull: true, validate: { isDecimal: true }, type: DECIMAL })
+  @Column({ allowNull: true, validate: { isDecimal: true }, type: DECIMAL(10, 2) })
   customCost: number;
 
   @Column({ allowNull: true, type: ENUM(...Object.values(SubscriptionFrequency)) })
