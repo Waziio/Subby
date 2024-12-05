@@ -4,6 +4,7 @@ import DashboardView from '@/views/DashboardView.vue';
 import { useAuthStore } from '@/stores/auth';
 import { useUserStore } from '@/stores/user';
 import SignUpView from '@/views/SignUpView.vue';
+import SubscriptionsView from '@/views/SubscriptionsView.vue';
 
 const router = createRouter({
 	history: createWebHistory(import.meta.env.BASE_URL),
@@ -28,6 +29,11 @@ const router = createRouter({
 			path: '/dashboard',
 			name: 'Dashboard',
 			component: DashboardView,
+		},
+		{
+			path: '/subscriptions',
+			name: 'Subscriptions',
+			component: SubscriptionsView,
 		},
 	],
 });
