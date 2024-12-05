@@ -17,3 +17,17 @@ apiClient.interceptors.request.use((request) => {
 
 	return request;
 });
+
+apiClient.interceptors.response.use(
+	(response) => {
+		return response;
+	},
+	async (error) => {
+		if (error.response.status === 401) {
+			// Expired JWT => refresh page, which will redirect to /signin
+			const authStore = useAuthStore();
+			authStore.logout();
+		}
+		return error;
+	}
+);

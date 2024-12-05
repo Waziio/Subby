@@ -2,6 +2,7 @@ import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
 import AuthService from '@/services/AuthService';
 import type { User } from '@/types/User';
+import { useUserStore } from '@/stores/user';
 
 export const useAuthStore = defineStore(
 	'auth',
@@ -14,7 +15,13 @@ export const useAuthStore = defineStore(
 			token.value = response.jwt;
 		}
 
-		return { token, isAuthenticated, signIn };
+		function logout() {
+			token.value = undefined;
+			const userStore = useUserStore();
+			userStore.logout();
+		}
+
+		return { token, isAuthenticated, signIn, logout };
 	},
 	{ persist: true }
 );

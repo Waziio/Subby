@@ -11,5 +11,9 @@ export const useUserStore = defineStore('user', () => {
 		user.value = response;
 	}
 
-	return { user, getMe };
+	function logout() {
+		user.value = undefined;
+	}
+
+	return { user, getMe, logout };
 });
